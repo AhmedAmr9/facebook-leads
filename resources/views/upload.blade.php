@@ -93,16 +93,25 @@
             
             <label for="user_name">Choose a name:</label>
             <select name="user_name" id="user_name">
+               <option value="" disabled selected> Choose Your user name </option>
                 <option value="Mr. Tamer">Mr. Tamer</option>
                 <option value="Mr. Ayman">Mr. Ayman</option>
-                <option value="Mr. Sherif">Mr. Sherif</option>
+                <option value="MS. Samar">Mr. Sherif</option>
                 <option value="System">System</option>
             </select>
             <button type="submit">Upload</button>
         </form>
     </div>
 
-    
+    <script>
+        // تحقق إذا كانت الرسالة موجودة
+        @if(session('success'))
+            setTimeout(function() {
+                // إخفاء الرسالة بعد 3 ثواني
+                document.querySelector('.alert').style.display = 'none';
+            }, 3000);  // 3000 مللي ثانية تعني 3 ثواني
+        @endif
+    </script>
 
 </body>
 </html>

@@ -30,8 +30,34 @@ class FacebookLeadsImport implements ToModel, WithHeadingRow
             return null; // تجاهل السطر وعدم رفعه
         }
 
+        // // تحقق إذا كان السطر كاملًا مكررًا في قاعدة البيانات
+        // $existingLead = FacebookLead::where('campaign_name', $row['campaign_name'] ?? null)
+        //     ->where('ad_set_name', $row['ad_set_name'] ?? null)
+        //     ->where('delivery_status', $row['delivery_status'] ?? null)
+        //     ->where('delivery_level', $row['delivery_level'] ?? null)
+        //     ->where('reach', $row['reach'] ?? null)
+        //     ->where('impressions', $row['impressions'] ?? null)
+        //     ->where('frequency', $row['frequency'] ?? null)
+        //     ->where('attribution_setting', $row['attribution_setting'] ?? null)
+        //     ->where('result_type', $row['result_type'] ?? null)
+        //     ->where('results', $row['results'] ?? null)
+        //     ->where('amount_spent', $row['amount_spent'] ?? null)
+        //     ->where('cost_per_result', $row['cost_per_result'] ?? null)
+        //     ->where('starts', $row['starts'] ?? null)
+        //     ->where('ends', $row['ends'] ?? null)
+        //     ->where('reporting_starts', $row['reporting_starts'] ?? null)
+        //     ->where('reporting_ends', $row['reporting_ends'] ?? null)
+        //     ->first();
+
+        // // إذا وجد السطر بنفس البيانات، تجاهله
+        // if ($existingLead) {
+        //     return null; // تجاهل السطر إذا كان مكررًا
+        // }
+
         // استخدام اسم المستخدم الذي تم تمريره
         $userName = $this->userName ?: 'Guest';  // استخدم اسم المستخدم المرسل أو 'Guest' إذا لم يكن مسجلاً
+
+        // إذا السطر غير مكرر، احفظه في قاعدة البيانات
         return new FacebookLead([
             'campaign_name'     => $row['campaign_name'] ?? null,
             'ad_set_name'       => $row['ad_set_name'] ?? null,
